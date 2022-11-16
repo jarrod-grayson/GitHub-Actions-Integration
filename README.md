@@ -1,7 +1,5 @@
 # Tricentis Tosca Integration
 
-[![Build Status]
-
 The Tosca CI/CD integration allows you to incorporate Tricentis Tosca into your own CI/CD pipeline. You can also combine it with other environments, for example environments where you don't have Tosca installed. The integration minimizes the effort you have to invest into continuous integration and delivery; you can trigger your automated Tosca tests without user inpu
 
 ## Documentation
