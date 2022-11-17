@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is Running Tosca Tests via the AOS API 🚀
 on: [push,workflow_dispatch]
 jobs:
   Execute-Tosca-Tests:
-    runs-on: self-hosted
+    runs-on: windows-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -13,7 +13,7 @@ jobs:
       - name: Run Tosca Tests on Jarrods VM
         shell: pwsh
         run: |  
-          .\tosca_execution_client.ps1 -toscaServerUrl "http://localhost:5012" -projectName "Tosca_User" -eventsConfigFilePath "testEvents.json" -clientId "jFoM6R2JeES2QX-yimEfYg" -clientSecret "yzrpQKziLEqQb-EsK3_tLAcwZU_FiYCEC3BYurGd_g4A" -creator "Github-ToscaExecutionClient" -debug "true" -executionEnvironment "Dex" -pollingInterval 10
+          .\tosca_execution_client.ps1 -toscaServerUrl "https://382e-107-215-62-171.ngrok.io" -projectName "Tosca_User" -eventsConfigFilePath "testEvents.json" -clientId "jFoM6R2JeES2QX-yimEfYg" -clientSecret "yzrpQKziLEqQb-EsK3_tLAcwZU_FiYCEC3BYurGd_g4A" -creator "Github-ToscaExecutionClient" -debug "true" -executionEnvironment "Dex" -pollingInterval 10
       - name: Process JUnit Results
         uses: mikepenz/action-junit-report@v3
         if: always()
