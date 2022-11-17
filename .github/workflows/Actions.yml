@@ -7,7 +7,10 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: Run Tosca Tests on Jarrod's VM
+      - name: Check if the testEvents.json file exists in the repo
+        shell: pwsh
+        run: Test-Path testEvents.json | Should -Be $true
+      - name: Run Tosca Tests on Jarrods VM
         shell: pwsh
         run: |  
           .\tosca_execution_client.ps1 -toscaServerUrl "http://localhost:5012" -projectName "Tosca_User" -eventsConfigFilePath "testEvents.json" -clientId "jFoM6R2JeES2QX-yimEfYg" -clientSecret "yzrpQKziLEqQb-EsK3_tLAcwZU_FiYCEC3BYurGd_g4A" -creator "Github-ToscaExecutionClient" -debug "true" -executionEnvironment "Dex" -pollingInterval 10
