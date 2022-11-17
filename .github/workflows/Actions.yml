@@ -1,6 +1,6 @@
 name: GitHub Action For Running Tosca
 run-name: ${{ github.actor }} is Running Tosca Tests via the AOS API 🚀
-on: [push]
+on: [push,workflow_dispatch]
 jobs:
   Execute-Tosca-Tests:
     runs-on: self-hosted
