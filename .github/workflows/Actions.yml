@@ -10,6 +10,9 @@ jobs:
       - name: Check if the testEvents.json file exists in the repo
         shell: pwsh
         run: Test-Path testEvents.json | Should -Be $true
+      - name: Display the path
+        run: echo ${env:PATH}
+        shell: pwsh
       - name: Run Tosca Tests on Demo VM
         shell: pwsh
         run: |  
