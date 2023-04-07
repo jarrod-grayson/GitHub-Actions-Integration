@@ -19,10 +19,3 @@ jobs:
         if: always()
         with:
           paths: '**/results/*results.xml'
-          output: test-summary.md
-      - name: Upload Test Summary
-        uses: actions/upload-artifacts@v3
-        with:
-          name: test-summary
-          path: test-summary.md
-        if: always()
