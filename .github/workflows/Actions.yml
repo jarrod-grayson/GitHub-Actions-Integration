@@ -3,19 +3,26 @@ run-name: ${{ github.actor }} is Running Tosca Tests via the AOS API 🚀
 on: [push,workflow_dispatch]
 jobs:
   Execute-Tosca-Tests:
-    runs-on: windows-latest
+    runs-on: self-hosted
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Check if the testEvents.json file exists in the repo
         shell: pwsh
         run: Test-Path testEvents.json | Should -Be $true
-      - name: Run Tosca Tests on Jarrods VM
+      - name: Run Tosca Tests on Demo VM
         shell: pwsh
         run: |  
-          .\tosca_execution_client.ps1 -toscaServerUrl "https://382e-107-215-62-171.ngrok.io" -projectName "Tosca_User" -eventsConfigFilePath "testEvents.json" -clientId "jFoM6R2JeES2QX-yimEfYg" -clientSecret "yzrpQKziLEqQb-EsK3_tLAcwZU_FiYCEC3BYurGd_g4A" -creator "Github-ToscaExecutionClient" -debug "true" -executionEnvironment "Dex" -pollingInterval 10
+          .\tosca_execution_client.ps1 -toscaServerUrl "http://localhost:5012" -projectName "Tosca_User" -eventsConfigFilePath "testEvents.json" -clientId "jFoM6R2JeES2QX-yimEfYg" -clientSecret "yzrpQKziLEqQb-EsK3_tLAcwZU_FiYCEC3BYurGd_g4A" -creator "Github-ToscaExecutionClient" -debug "true" -executionEnvironment "Dex" -pollingInterval 10
       - name: Process JUnit Results
-        uses: mikepenz/action-junit-report@v3
+        uses: test-summary/action@v2
         if: always()
         with:
-          report_paths: '**/results/*results.xml'
+          paths: '**/results/*results.xml'
+          output: test-summary.md
+      - name: Upload Test Summary
+        uses: actions/upload-artifacts@v3
+        with:
+          name: test-summary
+          path: test-summary.md
+        if: always()
