@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Run Tosca Tests on Demo VM
         run: |  
-          .\tosca_execution_client.ps1 -toscaServerUrl "http://localhost:5012" -projectName "Tosca_User" -eventsConfigFilePath "testEvents.json" -clientId "jFoM6R2JeES2QX-yimEfYg" -clientSecret "yzrpQKziLEqQb-EsK3_tLAcwZU_FiYCEC3BYurGd_g4A" -creator "Github-ToscaExecutionClient" -debug "true" -executionEnvironment "Dex" -pollingInterval 10
+          .\tosca_execution_client.ps1 -toscaServerUrl "http://localhost:80" -projectName "common_repository" -eventsConfigFilePath "testEvents.json" -clientId "pLCD-s_I7UWieIPIHcAHVA" -clientSecret "nvummXXOH0StbMwdHJBAyA0_Bfyb6z7Eqi6mO9hJpfwg" -creator "Github Actions -ToscaExecutionClient" -debug "true" -executionEnvironment "Dex" -pollingInterval 10
       - name: Process JUnit Results
         uses: mikepenz/action-junit-report@v3
         if: always()
