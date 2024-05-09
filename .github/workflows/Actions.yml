@@ -11,7 +11,8 @@ jobs:
         run: |  
           .\tosca_execution_client.ps1 -toscaServerUrl "http://localhost:80" -projectName "common_repository" -eventsConfigFilePath "testEvents.json" -clientId "pLCD-s_I7UWieIPIHcAHVA" -clientSecret "nvummXXOH0StbMwdHJBAyA0_Bfyb6z7Eqi6mO9hJpfwg" -creator "Github Actions -ToscaExecutionClient" -debug "true" -executionEnvironment "Dex" -pollingInterval 10
       - name: Process JUnit Results
-        uses: mikepenz/action-junit-report@v3
+        uses: EnricoMi/publish-unit-test-result-action@v2.16.1
         if: always()
         with:
-          report_paths: '**/results/*results.xml'
+          files: |
+            results/*.results.xml
